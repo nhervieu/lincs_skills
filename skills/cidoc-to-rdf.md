@@ -30,7 +30,7 @@ Convert Neo4j CIDOC-CRM data to LINCS-compatible RDF/Turtle.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix geo: <http://sws.geonames.org/> .
+@prefix geonames: <http://sws.geonames.org/> .
 @prefix viaf: <http://viaf.org/viaf/> .
 @prefix wikidata: <http://www.wikidata.org/entity/> .
 @prefix lincs: <https://lincs.digital/> .
@@ -127,7 +127,7 @@ Keep internal URIs but add owl:sameAs links:
 ```turtle
 base:PLACE_ON142032 a crm:E53_Place ;
     rdfs:label "Westmeath"@en ;
-    owl:sameAs geo:5914691 .  # GeoNames ID for Westmeath, Ontario
+    owl:sameAs geonames:5914691/ .  # GeoNames ID for Westmeath, Ontario
 ```
 
 ### Rule 7: Measurement Chain (Complete)

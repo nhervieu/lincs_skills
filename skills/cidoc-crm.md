@@ -110,7 +110,7 @@ CIDOC-CRM is event-centric: dates and places attach to **events**, not directly 
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix geo: <http://sws.geonames.org/> .
+@prefix geonames: <http://sws.geonames.org/> .
 @prefix viaf: <http://viaf.org/viaf/> .
 
 # The person
@@ -124,7 +124,7 @@ viaf:29539039 a crm:E21_Person ;
 <urn:birth:riel> a crm:E67_Birth ;
     rdfs:label "Birth of Louis Riel"@en ;
     crm:P98_brought_into_life viaf:29539039 ;
-    crm:P7_took_place_at geo:6183235 ;          # Red River Settlement
+    crm:P7_took_place_at geonames:6183235/ ;          # Red River Settlement
     crm:P4_has_time-span [ a crm:E52_Time-Span ;
         rdfs:label "22 October 1844"@en ;
         crm:P82_at_some_time_within "1844-10-22"^^xsd:string ;
@@ -132,9 +132,9 @@ viaf:29539039 a crm:E21_Person ;
         crm:P82b_end_of_the_end "1844-10-22T23:59:59"^^xsd:dateTime ] .
 
 # The place
-geo:6183235 a crm:E53_Place ;
+geonames:6183235/ a crm:E53_Place ;
     rdfs:label "Red River Settlement"@en ;
-    crm:P89_falls_within geo:6065171 .           # Manitoba
+    crm:P89_falls_within geonames:6065171/ .           # Manitoba
 ```
 
 **Key structural rules visible in this example:**

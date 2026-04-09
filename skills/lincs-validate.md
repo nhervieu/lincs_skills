@@ -122,7 +122,7 @@ If validating a Neo4j property graph, flag:
 If validating generated RDF/Turtle output, check for **referential integrity**:
 
 - Every local URI (using `base:` or project prefix) that appears in **object position** of a triple must also appear as a **subject** with an `rdf:type` declaration somewhere in the output.
-- External authority URIs (`geo:`, `viaf:`, `wikidata:`, `aat:`, `lexvo:`) are exempt — they are defined externally.
+- External authority URIs (`geonames:`, `viaf:`, `wikidata:`, `aat:`, `lexvo:`) are exempt — they are defined externally.
 - `E52_Time-Span` and `E54_Dimension` nodes created inline with blank node syntax (`[ a crm:E52_Time-Span ; ... ]`) are exempt.
 
 **Example of a dangling URI (FAIL)**:

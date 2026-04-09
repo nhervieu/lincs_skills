@@ -25,7 +25,7 @@ When generating Turtle from this profile, always include these exact prefix decl
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix geo: <http://sws.geonames.org/> .
+@prefix geonames: <http://sws.geonames.org/> .
 @prefix viaf: <http://viaf.org/viaf/> .
 @prefix wikidata: <http://www.wikidata.org/entity/> .
 @prefix lincs: <https://lincs.digital/> .
@@ -66,7 +66,7 @@ Do NOT guess or hallucinate namespace URIs. The exact URIs above are authoritati
 |-------------|-----------|-------------|---------|
 | People | VIAF | `http://viaf.org/viaf/{id}` | `viaf:104461457` (Oronhyatekha) |
 | People (alt) | Wikidata | `http://www.wikidata.org/entity/{id}` | `wikidata:Q7103784` |
-| Places | GeoNames | `http://sws.geonames.org/{id}/` | `geo:6174041` (Victoria, BC) |
+| Places | GeoNames | `http://sws.geonames.org/{id}/` | `geonames:6174041/` (Victoria, BC) |
 | Places (alt) | Wikidata | `http://www.wikidata.org/entity/{id}` | `wikidata:Q2166` |
 | Types/Concepts | Wikidata | `http://www.wikidata.org/entity/{id}` | `wikidata:Q327333` (govt agency) |
 | Archival types | Getty AAT | `http://vocab.getty.edu/aat/{id}` | `aat:300189759` (archival fonds) |
@@ -197,14 +197,14 @@ Common historical date qualifiers and their suggested bounds:
 <birth_uri> a crm:E67_Birth ;
     rdfs:label "Birth of Person Name"@en ;
     crm:P98_brought_into_life <person_uri> ;
-    crm:P7_took_place_at <geo:NNNNNNN> ;     # Pattern 4
+    crm:P7_took_place_at <geonames:NNNNNNN/> ;     # Pattern 4
     crm:P4_has_time-span <birth_timespan> .    # Pattern 5
 
 # Death
 <death_uri> a crm:E69_Death ;
     rdfs:label "Death of Person Name"@en ;
     crm:P100_was_death_of <person_uri> ;
-    crm:P7_took_place_at <geo:NNNNNNN> ;
+    crm:P7_took_place_at <geonames:NNNNNNN/> ;
     crm:P4_has_time-span <death_timespan> .
 
 # Occupation
@@ -214,7 +214,7 @@ Common historical date qualifiers and their suggested bounds:
     crm:P2_has_type event:OccupationEvent ;
     crm:P2_has_type occupation:teacher ;
     crm:P4_has_time-span <occ_timespan> ;
-    crm:P7_took_place_at <geo:NNNNNNN> .
+    crm:P7_took_place_at <geonames:NNNNNNN/> .
 
 # Marriage (as group joining)
 <marriage_uri> a crm:E85_Joining ;
@@ -222,7 +222,7 @@ Common historical date qualifiers and their suggested bounds:
     crm:P143_joined <person_uri> ;
     crm:P144_joined_with <marriage_group_uri> ;
     crm:P4_has_time-span <marriage_timespan> ;
-    crm:P7_took_place_at <geo:NNNNNNN> .
+    crm:P7_took_place_at <geonames:NNNNNNN/> .
 <marriage_group_uri> a crm:E74_Group ;
     rdfs:label "Marriage group of Person A and Person B"@en .
 
@@ -256,7 +256,7 @@ Common historical date qualifiers and their suggested bounds:
     crm:P2_has_type event:OccupationEvent ;
     crm:P2_has_type <specific_occupation_type> ;
     crm:P4_has_time-span <timespan> ;
-    crm:P7_took_place_at <geo:NNNNNNN> .
+    crm:P7_took_place_at <geonames:NNNNNNN/> .
 ```
 
 ## Government Event Modeling (Cabinet Conclusions Pattern)
@@ -268,7 +268,7 @@ Common historical date qualifiers and their suggested bounds:
     rdfs:label "Cabinet meeting of 1944-06-06"@en ;
     crm:P14_carried_out_by <ministry_uri> ;
     crm:P21_had_general_purpose <topic_uri> ;
-    crm:P7_took_place_at geo:6094817 ;  # Ottawa
+    crm:P7_took_place_at geonames:6094817/ ;  # Ottawa
     crm:P4_has_time-span <timespan> .
 
 # Role-qualified participation (uses PC14 property class)
@@ -305,12 +305,12 @@ Common historical date qualifiers and their suggested bounds:
 # Text fragment
 <text_fragment> a crm:E73_Information_Object ;
     crm:P190_has_symbolic_content "was born in Halifax"^^xsd:string ;
-    crm:P67_refers_to <geo:6324729> .  # Halifax
+    crm:P67_refers_to <geonames:6324729/> .  # Halifax
 
 # Web Annotation linking text to entity
 <annotation_uri> a oa:Annotation ;
     oa:hasTarget <text_fragment> ;
-    oa:hasBody <geo:6324729> ;
+    oa:hasBody <geonames:6324729/> ;
     oa:motivatedBy oa:identifying .
 ```
 

@@ -41,7 +41,7 @@ PREFIX oa: <http://www.w3.org/ns/oa#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX geo: <http://sws.geonames.org/>
+PREFIX geonames: <http://sws.geonames.org/>
 PREFIX viaf: <http://viaf.org/viaf/>
 PREFIX wikidata: <http://www.wikidata.org/entity/>
 PREFIX lincs: <https://lincs.digital/>
@@ -143,7 +143,7 @@ ORDER BY ?date
 SELECT ?person ?name ?eventType ?date
 WHERE {
   GRAPH <http://graph.lincsproject.ca/hist-canada/hist-cdns> {
-    ?event crm:P7_took_place_at geo:6094817 .  # Ottawa
+    ?event crm:P7_took_place_at geonames:6094817/ .  # Ottawa
 
     {
       ?event crm:P98_brought_into_life ?person .
