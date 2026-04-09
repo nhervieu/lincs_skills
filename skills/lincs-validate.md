@@ -129,23 +129,23 @@ If validating a Neo4j property graph, flag:
 
 If validating generated RDF/Turtle output, check for **referential integrity**:
 
-- Every local URI (using `base:` or project prefix) that appears in **object position** of a triple must also appear as a **subject** with an `rdf:type` declaration somewhere in the output.
+- Every local URI (using project prefix or temporary/LINCS minted URI) that appears in **object position** of a triple must also appear as a **subject** with an `rdf:type` declaration somewhere in the output.
 - External authority URIs (`geonames:`, `viaf:`, `wikidata:`, `aat:`, `lexvo:`) are exempt — they are defined externally.
 - URIs for `E52_Time-Span` and `E54_Dimension` nodes should be minted.
 
 **Example of a dangling URI (FAIL)**:
 ```turtle
 # This measurement references a presence that is never defined
-base:MEAS_1 a crm:E16_Measurement ;
-    crm:P39_measured base:ON082003_1871 .  # <-- DANGLING: base:ON082003_1871 has no rdf:type triple
+<http://temp.lincsproject.ca/datasetID/MEAS_1 a crm:E16_Measurement ;
+    crm:P39_measured <http://temp.lincsproject.ca/datasetID/ON082003_1871 .  # <-- DANGLING: <http://temp.lincsproject.ca/datasetID/ON082003_1871 has no rdf:type triple
 ```
 
 **Corrected**:
 ```turtle
-base:MEAS_1 a crm:E16_Measurement ;
-    crm:P39_measured base:ON082003_1871 .
+<http://temp.lincsproject.ca/datasetID/MEAS_1 a crm:E16_Measurement ;
+    crm:P39_measured <http://temp.lincsproject.ca/datasetID/ON082003_1871 .
 
-base:ON082003_1871 a crm:E93_Presence ;   # <-- Now defined
+<http://temp.lincsproject.ca/datasetID/ON082003_1871 a crm:E93_Presence ;   # <-- Now defined
     rdfs:label "Westmeath presence (1871)"@en .
 ```
 
@@ -164,11 +164,11 @@ Check that:
 
 **Example of invalid blank nodes (FAIL)**:
 ```turtle
-base:MEAS_1 a crm:E16_Measurement ;
+<http://temp.lincsproject.ca/datasetID/MEAS_1 a crm:E16_Measurement ;
     crm:P40_observed_dimension [ 
       a crm:E54_Dimension ;
       crm:P90_has_value 1000 ;
-      crm:P91_has_unit base:UNIT_PERSONS
+      crm:P91_has_unit <http://temp.lincsproject.ca/datasetID/UNIT_PERSONS
     ] .
 ```
 
@@ -176,13 +176,13 @@ The `[ ... ]` syntax creates an anonymous blank node that cannot be referenced e
 
 **Corrected**:
 ```turtle
-base:MEAS_1 a crm:E16_Measurement ;
-    crm:P40_observed_dimension base:DIM_POP_1871_WEST .
+<http://temp.lincsproject.ca/datasetID/MEAS_1 a crm:E16_Measurement ;
+    crm:P40_observed_dimension <http://temp.lincsproject.ca/datasetID/DIM_POP_1871_WEST .
 
-base:DIM_POP_1871_WEST a crm:E54_Dimension ;
+<http://temp.lincsproject.ca/datasetID/DIM_POP_1871_WEST a crm:E54_Dimension ;
     rdfs:label "Population of Westmeath (1871)"@en ;
     crm:P90_has_value "1000"^^xsd:integer ;
-    crm:P91_has_unit base:UNIT_PERSONS .
+    crm:P91_has_unit <http://temp.lincsproject.ca/datasetID/UNIT_PERSONS .
 ```
 
 **FAIL if**: Any blank node (including intermediate nodes for time-spans, dimensions, presences, or attribute assignments) appears in the RDF.

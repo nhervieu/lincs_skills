@@ -40,7 +40,7 @@ Convert Neo4j CIDOC-CRM data to LINCS-compatible RDF/Turtle.
 @prefix aat: <http://vocab.getty.edu/aat/> .
 @prefix lexvo: <http://lexvo.org/id/iso639-3/> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
-@prefix base: <http://example.org/chgis/> .  # REPLACE with actual project URI
+@prefix base: <http://temp.lincsproject.ca/datasetID/> .  # REPLACE with actual project URI 
 ```
 
 ## Translation Rules

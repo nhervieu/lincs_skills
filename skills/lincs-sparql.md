@@ -50,8 +50,8 @@ PREFIX identity: <http://id.lincsproject.ca/identity/>
 PREFIX occupation: <http://id.lincsproject.ca/occupation/>
 PREFIX aat: <http://vocab.getty.edu/aat/>
 PREFIX lexvo: <http://lexvo.org/id/iso639-3/>
-PREFIX base: <http://example.org/chgis/>
-# NOTE: Replace base: with actual project URI for production queries
+PREFIX <http://temp.lincsproject.ca/datasetID/ <http://example.org/chgis/>
+# NOTE: Replace <http://temp.lincsproject.ca/datasetID/ with actual project URI for production queries
 ```
 
 ## Query Templates
@@ -278,7 +278,6 @@ ORDER BY ?person
 For querying your Neo4j CIDOC-CRM census data if serialized to RDF:
 
 ```sparql
-PREFIX temp: <http://temp.lincsproject.ca/hgis/>
 
 SELECT ?place ?placeName ?year ?variable ?value ?unit
 WHERE {
@@ -304,13 +303,12 @@ ORDER BY ?placeName ?year ?variable
 
 ### 9. Population Timeline for a Place
 ```sparql
-PREFIX base: <http://example.org/chgis/>
 
 SELECT ?year ?population
 WHERE {
   ?measurement a crm:E16_Measurement ;
                crm:P39_measured ?presence ;
-               crm:P2_has_type base:VAR_POP_XX_N ;
+               crm:P2_has_type <http://temp.lincsproject.ca/datasetID/VAR_POP_XX_N ;
                crm:P40_observed_dimension ?dim ;
                crm:P4_has_time-span ?ts .
 
@@ -348,7 +346,7 @@ WHERE {
   ?localPlace owl:sameAs ?geoPlace ;
               rdfs:label ?localPlaceName .
   ?measurement crm:P39_measured ?presence ;
-               crm:P2_has_type base:VAR_POP_XX_N ;
+               crm:P2_has_type <http://temp.lincsproject.ca/datasetID/VAR_POP_XX_N ;
                crm:P40_observed_dimension ?dim ;
                crm:P4_has_time-span ?ts .
   ?presence crm:P166_was_a_presence_of ?localPlace .
@@ -379,7 +377,7 @@ WHERE {
   ?localPlace owl:sameAs ?geoPlace ;
               rdfs:label ?localPlaceName .
   ?measurement crm:P39_measured ?presence ;
-               crm:P2_has_type base:VAR_POP_XX_N ;
+               crm:P2_has_type <http://temp.lincsproject.ca/datasetID/VAR_POP_XX_N ;
                crm:P40_observed_dimension ?dim ;
                crm:P4_has_time-span ?ts .
   ?presence crm:P166_was_a_presence_of ?localPlace .
