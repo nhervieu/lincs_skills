@@ -69,7 +69,7 @@ GROUP BY ?class
 ORDER BY DESC(?count)
 ```
 
-### 2. Find a Person by Name
+### 2. Find a Person by Name and additional information about their birth if available
 ```sparql
 SELECT ?person ?name ?birthDate ?birthPlace ?birthPlaceLabel
 WHERE {
@@ -95,6 +95,8 @@ LIMIT 20
 
 ### 3. Person's Full Biography (Events, Occupations, Relationships)
 ```sparql
+
+# Replace viaf:XXXXXXXXX with valid person URI
 SELECT ?person ?name ?eventType ?eventLabel ?date ?place ?placeLabel
 WHERE {
   GRAPH <http://graph.lincsproject.ca/hist-canada/hist-cdns> {
@@ -227,6 +229,30 @@ ORDER BY ?year
 
 ### 7. Cross-Dataset: People Appearing in Multiple Datasets
 ```sparql
+SELECT ?person 
+       (SAMPLE(?name) AS ?personName) 
+       (COUNT(DISTINCT ?g) AS ?datasetCount)
+       (GROUP_CONCAT(DISTINCT ?label; separator=", ") AS ?foundIn)
+WHERE {
+  # Define the graphs and their readable labels upfront
+  VALUES (?g ?label) {
+    (<http://graph.lincsproject.ca/hist-canada/hist-cdns> "Historical Canadians")
+    (<http://graph.lincsproject.ca/hist-canada/ind-affairs> "Indian Affairs")
+    (<http://graph.lincsproject.ca/hist-canada/cabinet-conclusions> "Cabinet Conclusions")
+  }
+  
+  # Execute a single graph pattern match against the defined list
+  GRAPH ?g {
+    ?person a crm:E21_Person ; 
+            rdfs:label ?name .
+  }
+}
+GROUP BY ?person
+HAVING (?datasetCount > 1)
+ORDER BY DESC(?datasetCount) ?personName
+```
+### 7.1. Cross-Dataset: All People Across Datasets
+```sparql
 SELECT ?person ?name ?dataset
 WHERE {
   {
@@ -305,6 +331,8 @@ ORDER BY ?year
 #### 10a. Co-located (both datasets loaded in same triplestore)
 Use when you've loaded your census RDF into the same Fuseki/GraphDB instance as LINCS data:
 
+Load into a graph with a URI that starts with `http://graph.lincsproject.ca/hist-canada/`
+
 ```sparql
 SELECT ?person ?name ?localPlace ?localPlaceName ?censusYear ?population
 WHERE {
@@ -314,6 +342,8 @@ WHERE {
            crm:P7_took_place_at ?geoPlace .
     ?person rdfs:label ?name .
   }
+
+  GRAPH <http://graph.lincsproject.ca/hist-canada/my-graph> {
 
   # Local census data (default graph or named local graph)
   ?localPlace owl:sameAs ?geoPlace ;
@@ -325,6 +355,7 @@ WHERE {
   ?presence crmgeo:P166_was_a_presence_of ?localPlace .
   ?dim crm:P90_has_value ?population .
   ?ts crm:P82_at_some_time_within ?censusYear .
+  }
 }
 ORDER BY ?name ?censusYear
 ```

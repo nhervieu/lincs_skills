@@ -1,5 +1,5 @@
 ---
-name: cidoc-to-rdf
+name: neo4j-to-rdf
 description: Convert CIDOC-CRM data from Neo4j property graph format to valid RDF/Turtle serialization. Handles namespace mapping, relationship property reification, authority URI insertion, and LINCS-compatible output.
 user-invocable: true
 allowed-tools: Read, Grep, Glob, Write, Edit
@@ -22,7 +22,6 @@ Convert Neo4j CIDOC-CRM data to LINCS-compatible RDF/Turtle.
 
 ```turtle
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
-@prefix crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/> .
 @prefix crmdig: <http://www.ics.forth.gr/isl/CRMdig/> .
 @prefix oa: <http://www.w3.org/ns/oa#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .

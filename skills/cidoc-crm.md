@@ -1,6 +1,6 @@
 ---
 name: cidoc-crm
-description: CIDOC-CRM ontology reference for cultural heritage knowledge graphs. Use when modeling entities, choosing classes/properties, or checking ontology correctness. Covers core CRM v7.3.1, CRMgeo, and CRMdig extensions.
+description: CIDOC-CRM ontology reference for cultural heritage knowledge graphs. Use when modeling entities, choosing classes/properties, or checking ontology correctness. Covers core CRM v7.3.1, and CRMdig extensions.
 user-invocable: true
 allowed-tools: Read, Grep, Glob, WebFetch
 argument-hint: [class-or-property-or-question]
@@ -12,7 +12,7 @@ You are a CIDOC-CRM ontology expert. When the user asks about classes, propertie
 
 ## Output Constraints
 
-When generating data models, always default to valid **RDF Turtle (`.ttl`)** syntax unless asked otherwise. Always include standard prefixes (`rdf:`, `rdfs:`, `owl:`, `xsd:`, `skos:`, `crm:`, `crmgeo:`, `crmdig:`). Every generated entity MUST have `rdfs:label`. Never attach dates or places directly to an entity — always route through an event node (this is CIDOC-CRM's event-centric pattern, not schema.org's flat model).
+When generating data models, always default to valid **RDF Turtle (`.ttl`)** syntax unless asked otherwise. Always include standard prefixes (`rdf:`, `rdfs:`, `owl:`, `xsd:`, `skos:`, `crm:`, `crmdig:`). Every generated entity MUST have `rdfs:label`. Never attach dates or places directly to an entity — always route through an event node (this is CIDOC-CRM's event-centric pattern, not schema.org's flat model).
 
 ## Query: $ARGUMENTS
 
@@ -121,7 +121,7 @@ viaf:29539039 a crm:E21_Person ;
         crm:P190_has_symbolic_content "Louis Riel"^^xsd:string ] .
 
 # The birth EVENT — dates and places attach here, not on the person
-<urn:birth:riel> a crm:E67_Birth ;
+<riel_birth_uri> a crm:E67_Birth ;
     rdfs:label "Birth of Louis Riel"@en ;
     crm:P98_brought_into_life viaf:29539039 ;
     crm:P7_took_place_at geonames:6183235/ ;          # Red River Settlement
@@ -148,7 +148,6 @@ geonames:6183235/ a crm:E53_Place ;
 
 ```turtle
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
-@prefix crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix base: <http://example.org/chgis/> .
@@ -171,7 +170,7 @@ base:MEAS_ON082003_1871_POP a crm:E16_Measurement ;
 # The temporal presence (CRMgeo — note the namespace)
 base:ON082003_1871 a crmgeo:E93_Presence ;
     rdfs:label "Westmeath presence (1871)"@en ;
-    crmgeo:P166_was_a_presence_of base:PLACE_ON142032 .
+    crm:P166_was_a_presence_of base:PLACE_ON142032 .
 
 # The enduring place
 base:PLACE_ON142032 a crm:E53_Place ;
@@ -179,11 +178,6 @@ base:PLACE_ON142032 a crm:E53_Place ;
     owl:sameAs <http://sws.geonames.org/5914691/> .
 ```
 
-## Extension: CRMgeo (Geospatial)
-
-Namespace: `http://www.ics.forth.gr/isl/CRMgeo/` (prefix: `crmgeo:`)
-
-IMPORTANT: These are NOT core CIDOC-CRM. They require importing the CRMgeo extension.
 
 | Class/Property | Type | Description |
 |---------------|------|-------------|
@@ -250,15 +244,15 @@ When building knowledge graphs from primary historical sources (OCR'd documents,
 
 ```turtle
 # The assertion itself is uncertain
-<urn:assignment:birth_date_riel> a crm:E13_Attribute_Assignment ;
+<birth_date_riel_assignment_uri> a crm:E13_Attribute_Assignment ;
     rdfs:label "Uncertain birth date assignment for Louis Riel"@en ;
-    crm:P140_assigned_attribute_to <urn:birth:riel> ;
+    crm:P140_assigned_attribute_to <riel_birth_uri> ;
     crm:P141_assigned [ a crm:E52_Time-Span ;
         rdfs:label "circa 1844"@en ;
         crm:P82_at_some_time_within "c. 1844"^^xsd:string ;
         crm:P82a_begin_of_the_begin "1843-01-01T00:00:00"^^xsd:dateTime ;
         crm:P82b_end_of_the_end "1845-12-31T23:59:59"^^xsd:dateTime ] ;
-    crm:P2_has_type <urn:type:uncertain_date> ;
+    crm:P2_has_type edit:certaintyUnknown ;
     crm:P17_was_motivated_by [ a crm:E73_Information_Object ;
         rdfs:label "OCR'd census record (poor quality)"@en ] .
 ```
