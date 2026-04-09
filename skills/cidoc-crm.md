@@ -292,7 +292,7 @@ When asked "how should I model X?", follow this decision tree:
 6. **Is it a birth/death?** → E67_Birth / E69_Death
 7. **Is it a group forming/ending?** → E66_Formation / E68_Dissolution
 8. **Is it someone joining/leaving a group?** → E85_Joining / E86_Leaving
-9. **Is it a measurement/observation?** → E16_Measurement → E54_Dimension + E58_Unit
+9. **Is it a measurement/observation?** → E16_Measurement → E54_Dimension + E58_Measurement_Unit
 10. **Is it a document/text?** → E33_Linguistic_Object or E73_Information_Object
 11. **Is it a digital file?** → CRMdig:D1_Digital_Object
 12. **Is it a classification/category?** → E55_Type (link to Wikidata/SKOS vocab)

@@ -33,11 +33,11 @@ Convert Neo4j CIDOC-CRM data to LINCS-compatible RDF/Turtle.
 @prefix geonames: <http://sws.geonames.org/> .
 @prefix viaf: <http://viaf.org/viaf/> .
 @prefix wikidata: <http://www.wikidata.org/entity/> .
-@prefix lincs: <https://lincs.digital/> .
-@prefix biography: <https://lincs.digital/vocabulary/biography/> .
-@prefix event: <https://lincs.digital/vocabulary/event/> .
-@prefix identity: <https://lincs.digital/vocabulary/identity/> .
-@prefix occupation: <https://lincs.digital/vocabulary/occupation/> .
+@prefix lincs: <http://id.lincsproject.ca/> .
+@prefix biography: <http://id.lincsproject.ca/biography/> .
+@prefix event: <http://id.lincsproject.ca/event/> .
+@prefix identity: <http://id.lincsproject.ca/identity/> .
+@prefix occupation: <http://id.lincsproject.ca/occupation/> .
 @prefix aat: <http://vocab.getty.edu/aat/> .
 @prefix lexvo: <http://lexvo.org/id/iso639-3/> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .

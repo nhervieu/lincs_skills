@@ -28,7 +28,7 @@ GRAPH <http://graph.lincsproject.ca/hist-canada/hist-cdns>
 GRAPH <http://graph.lincsproject.ca/hist-canada/ind-affairs>
 
 # Cabinet Conclusions
-GRAPH <http://graph.lincsproject.ca/hist-canada/cab-con>
+GRAPH <http://graph.lincsproject.ca/hist-canada/cabinet-conclusions>
 ```
 
 ## Standard Prefixes
@@ -44,11 +44,11 @@ PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX geonames: <http://sws.geonames.org/>
 PREFIX viaf: <http://viaf.org/viaf/>
 PREFIX wikidata: <http://www.wikidata.org/entity/>
-PREFIX lincs: <https://lincs.digital/>
-PREFIX biography: <https://lincs.digital/vocabulary/biography/>
-PREFIX event: <https://lincs.digital/vocabulary/event/>
-PREFIX identity: <https://lincs.digital/vocabulary/identity/>
-PREFIX occupation: <https://lincs.digital/vocabulary/occupation/>
+PREFIX lincs: <http://id.lincsproject.ca/>
+PREFIX biography: <http://id.lincsproject.ca/biography/>
+PREFIX event: <http://id.lincsproject.ca/event/>
+PREFIX identity: <http://id.lincsproject.ca/identity/>
+PREFIX occupation: <http://id.lincsproject.ca/occupation/>
 PREFIX aat: <http://vocab.getty.edu/aat/>
 PREFIX lexvo: <http://lexvo.org/id/iso639-3/>
 PREFIX base: <http://example.org/chgis/>
@@ -205,7 +205,7 @@ ORDER BY ?agencyName ?startDate
 # Use YEAR() to bin by calendar year for historical analysis.
 SELECT ?year ?topic ?topicLabel (COUNT(?meeting) AS ?meetings)
 WHERE {
-  GRAPH <http://graph.lincsproject.ca/hist-canada/cab-con> {
+  GRAPH <http://graph.lincsproject.ca/hist-canada/cabinet-conclusions> {
     ?meeting a crm:E7_Activity ;
              crm:P21_had_general_purpose ?topic ;
              crm:P4_has_time-span ?ts .
@@ -240,7 +240,7 @@ WHERE {
       BIND("Indian Affairs" AS ?dataset)
     }
   } UNION {
-    GRAPH <http://graph.lincsproject.ca/hist-canada/cab-con> {
+    GRAPH <http://graph.lincsproject.ca/hist-canada/cabinet-conclusions> {
       ?person a crm:E21_Person ; rdfs:label ?name .
       BIND("Cabinet Conclusions" AS ?dataset)
     }
