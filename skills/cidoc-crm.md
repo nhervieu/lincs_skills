@@ -103,7 +103,7 @@ Current Version: 7.1.1
 |  P53_has_former_or_current_location | E18 | E53 | Connect something direclty to a current or former location without an event |
 |  P67_refers_to  |  E89  |  E1  |  Information object mentions entity  |
 |  P72_has_language  |  E33  |  E56  |  Written/spoken in this language  |
-|  P74_has_current_or_former_residence | E19 | E53 | Connect an actor to a current or former residence without a move event |
+|  P74_has_current_or_former_residence | E39 | E53 | Connect an actor to a current or former residence without a move event |
 |  P75_possesses | E39 | E30 | Connect rigths to the holder |
 |  P76_has_contact_point | E39 | E41 | Attach an address to a group |
 |  P82_at_some_time_within  |  E52  |  xsd:string  |  Human-readable date label  |
@@ -124,7 +124,7 @@ Current Version: 7.1.1
 |  P107_has_current_or_former_member  |  E74  |  E39  |  Group includes/included this actor  |
 |  P108_has_produced | E12 | E24 | The output of a production event |
 |  P121_overlaps_with | E53 | E53 | A place geometrically overlaps with another place |
-|  P122_borders | E53 | E53 | A place borders another place |
+|  P122_borders_with | E53 | E53 | A place borders another place |
 |  P127_has_broader_term  |  E55  |  E55  |  Type hierarchy (narrower → broader)  |
 |  P129_is_about  |  E89  |  E1  |  Information object is about entity  |
 |  P130_shows_features_of  |  E70  |  E70  |  Digital copy shows features of original  |
@@ -136,7 +136,7 @@ Current Version: 7.1.1
 |  P144_joined_with  |  E85  |  E74  |  Joining added to this group  |
 |  P148_has_component | E89 | E89 | Components of expressions, works, and information objects |
 |  P156_occupies | E18 | E53 | A physical thing fills a place |
-|  P160_has_temporal_projetion | E92 | E55 | The temporal projection of a spacetime volume. Used to connect a timespand to a spacetime volume or presence. |
+|  P160_has_temporal_projection | E92 | E55 | The temporal projection of a spacetime volume. Used to connect a timespand to a spacetime volume or presence. |
 |  P161_has_spatial_projection | E92 | E53 | The spatial projection of a spacetime volume. Used to connect a place to a spacetime volume or presence. |
 |  P166_was_a_presence_of | E93 | E92 | Used to connect an event to a presence. |
 |  P168_place_is_defined_by  |  E53  |  E94  | Use `"POINT(lon lat)"@en`, For polygons: `"POLYGON((lon1 lat1, lon2 lat2, ...))"@en`. |
