@@ -77,7 +77,7 @@ Current Version: 7.1.1
 |----------|--------|-------|---------|
 |  P01_has_domain | PC14 | E1 | Used to define an actors participation in an event, with a PC14 carried out by |
 |  P02_has_range | PC14 | E1 | Used to define an actors participation in an event, with a PC14 carried out by |
-|  P1_is_identified_by  |  E1  |  E41/E42  |  Entity has this name/identifier. Use E41_Appellation (or E33_E41) for human-readable names (strings). Use E42_Identifier for formal codes, database IDs, and URIs.  |
+|  P1_is_identified_by  |  E1  |  E33_E41/E42  |  Entity has this name/identifier. Use E33_E41_Linguistic_Appellation for human-readable names (strings). Use E42_Identifier for formal codes, database IDs, and URIs.  |
 |  P2_has_type  |  E1  |  E55  |  Entity is classified as  |
 |  P3_has_note | E1 |  xsd:string  | Attach a general note |
 |  P4_has_time-span  |  E2  |  E52  |  Temporal entity has this time extent  |
