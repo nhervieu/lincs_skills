@@ -25,6 +25,8 @@ Check that:
 - No invented property names that aren't in any CRM spec (e.g., `PLACE_LINEAGE`, `SPLIT_FROM`)
 - Don't use inverse CIDOC CRM properties.
 
+**FAIL if**: Any of the above conditions are not met.
+
 
 ### Category 2: Authority URIs
 
@@ -191,6 +193,18 @@ The `[ ... ]` syntax creates an anonymous blank node that cannot be referenced e
 
 **FAIL if**: Any blank node (including intermediate nodes for time-spans, dimensions, presences, or attribute assignments) appears in the RDF.
 **Remediation**: Mint a URI for every intermediate node using your projects namespace URI (e.g., `temp.lincsproject.ca/montreal/population/dimension/westmeath`). Use a consistent URI scheme (e.g., `temp.lincsproject.ca/{dataset}/{types}`). 
+
+### Category 12: Incorrect Domain/Range
+
+Check every triple against the LINCS Property Reference Table. This is the most critical check to ontological correctness.
+
+**FAIL if**:
+- The Subject is not an instance of the property's defined Domain or one of its subclasses.
+- The Object is not an instance of the property's defined Range or one of its subclasses.
+
+**WARN if**:
+- A property is used that is not in the approved LINCS list.
+- A class is used that is not in the approved LINCS list.
 
 
 ### Output Format
