@@ -242,7 +242,7 @@ CIDOC-CRM is event-centric: dates and places attach to **events**, not directly 
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix temp_lincs: <http://temp.lincsproject.ca/>
+@prefix temp_lincs: <http://temp.lincsproject.ca/> .
 
 temp_lincs:farm_type a crm:E55_Type ;
     rdfs:label "Farm"@en .
@@ -281,7 +281,7 @@ temp_lincs:400_bushels_wheat a crm:E19_Physical_Object ;
 temp_lincs:400_bushells_wheat_dimension a crm:E54_Dimension ;
     rdfs:label "Number of bushels"@en ;
     crm:P91_has_unit temp_lincs:bushel_type ;
-    crm:P90_has_value "400"xsd:integer .
+    crm:P90_has_value "400"^^xsd:integer .
 
 temp_lincs:wheat_production_1871_timespan a crm:E52_Time-Span ;
     rdfs:label "Timespan of farm1 in halifax producing wheat in 1871"@en ;
@@ -291,7 +291,7 @@ temp_lincs:wheat_production_1871_timespan a crm:E52_Time-Span ;
 
 temp_lincs:farm1_presence_1871 a crm:E93_Presence ;
     rdfs:label "Farm1 presence in 1871"@en ;
-    crm:P195_was_a_presence_of temp_lincs:farm1
+    crm:P195_was_a_presence_of temp_lincs:farm1 ;
     crm:P160_has_temporal_projection temp_lincs:wheat_production_1871_timespan ;
     crm:P161_has_spatial_projection temp_lincs:farm1_location ;
     crm:P10_falls_within temp_lincs:halifax_presence_1871 .
